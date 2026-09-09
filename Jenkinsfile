@@ -1,21 +1,17 @@
 pipeline {
   agent any
+  enviroment {
+    APP_NAME = "demo"
+  }
   stages {
-      stage('Build') {
-          steps {
-              echo 'Building...'
-          }
-      }    
-      stage ('Text') {
-          steps {
-            echo 'Testing...'
-          }
+    stage("Build") {
+      enviroment {
+        BUILD_MODE = 'production'
       }
-      stage ('Done') {
-          steps {
-              echo 'Pipeline Complete'
-          }
+      steps {
+        sh 'echo $APP_NAME $BULD_MODE'
       }
-
+    }
   }
 }
+  
